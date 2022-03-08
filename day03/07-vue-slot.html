@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <child>
+      <child2></child2>
+      <!-- {{ msg }} -->
+    </child>
+  </div>
+
+  <script src="../Vue.js"></script>
+  <script>
+    const child = {
+      template: `
+        <div>
+          <p>军哥哥</p>
+          <slot></slot>
+        </div>
+      `
+    }
+
+    const child2 = {
+      template: `
+        <h2>还很高</h2>
+      `
+    }
+
+
+    new Vue({
+      el: '#app',
+      data() {
+        return {}
+      },
+      components: {
+        child,
+        child2
+      }
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .active {
+      background: green;
+    }
+    .success-color {
+      color: red
+    }
+    .bigFont {
+      font-size: 30px;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <!-- <p v-for="(item, index) in list" 
+      class="bigFont"
+      :class="obj"
+      @click="handerClick(index)"
+    >{{ item }}</p> -->
+    <p :style="{ color: successColor, fontSize: big, animation: animation }">骏哥很高富帅</p>
+  </div>
+
+  <script src="../Vue.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data() {
+        return {
+          list: ['骏哥很高', '骏哥很富', '骏哥很帅'],
+          isActive: 0,
+          // obj: {
+          //   active: true,
+          //   'success-color': false
+          // }
+          successColor: 'green',
+          big: '30px',
+          animation: 'move 1s'
+        }
+      },
+      computed: {
+        obj() {
+          return {
+            active: this.isActive === 1,
+            'success-color': false
+          }
+        }
+      },
+      methods: {
+        handerClick(i) {
+          this.isActive = i;
+        }
+      }
+    })
+  </script>
+</body>
+</html>

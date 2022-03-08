@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <div 
+      v-for="(item, index) in list" 
+      :key="index" 
+      @click="handleClick(index)"
+    >{{ item }}</div>
+    <keep-alive>
+      <component :is="currentIndex"></component>
+    </keep-alive>
+  </div>
+
+  <script src="../Vue.js"></script>
+  <script>
+    const child1 = {
+      template: `
+        <div>
+          我是第一个组件{{ msg }}
+        </div>
+      `,
+      data() {
+        return {
+          msg: 1
+        }
+      },
+      mounted() {
+        console.log('1被挂载了')
+        setTimeout(() => {
+          this.msg = 4
+        }, 2000)
+      },
+      beforeDestroy() {
+        console.log('1被销毁了')
+      }
+    }
+
+    const child2 = {
+      template: `
+        <div>我是第2个组件</div>
+      `,
+      activated() {
+        console.log('2被重新激活了')
+      },
+      deactivated() {
+        console.log('2被停用了')
+      },
+      mounted() {
+        console.log('2被挂载了')
+      },
+      beforeDestroy() {
+        console.log('2被销毁了')
+      }
+    }
+
+    const child3 = {
+      template: `
+        <div>我是第3个组件</div>
+      `,
+      mounted() {
+        console.log('3被挂载了')
+      },
+      beforeDestroy() {
+        console.log('3被销毁了')
+      }
+    }
+
+    new Vue({
+      el: '#app',
+      data() {
+        return {
+          list: ['按钮1', '按钮2', '按钮3'],
+          currentIndex: 0
+        }
+      },
+      methods: {
+        handleClick(index) {
+          this.currentIndex = 'child' + (index + 1)
+        }
+      },
+      components: {
+        child1,
+        child2,
+        child3
+      }
+    })
+  </script>
+</body>
+</html>

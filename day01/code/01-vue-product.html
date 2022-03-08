@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <!-- 双大括号的插值语法，用来在页面里面显示响应式数据 -->
+    <!-- {{ message }} -->
+    <ul>
+      <!-- vue的指令，v-for用来循环显示 -->
+      <li v-for="item in students">
+        <!-- v-model用来做数据的双向绑定 -->
+        <input type="number" v-model="item.age">
+        {{ item.name }}的月薪是{{ item.age }}k
+        <!-- v-if用来条件渲染 -->
+        <span v-if="item.age < 25"> -你的工资低于平均值</span>
+      </li>
+    </ul>
+
+    <p>我们班的总薪水是{{ totalCount }}k</p>
+  </div>
+
+
+  <script src="../Vue.js"></script>
+
+  <script>
+    const vm = new Vue({
+      // 参数option
+      // el是element的意思，用来挂载的
+      el: '#app',
+      // data是响应式的数据
+      data: {
+        // message: 'hello Vue!'
+        students: []
+      },
+      // 生命周期的钩子函数, 相当于window.onload
+      created() {
+        fetch('http://localhost:3000/api/students/list?page=1&count=10')
+          .then(response => response.json())
+          .then(data => {
+            this.students = data.result
+          })
+          .catch(e => console.log("Oops, error", e))
+      },
+      // 计算属性, 用来依据响应式数据计算
+      computed: {
+        // 写法上是函数，必须要有return
+        totalCount() {
+          return this.students.reduce((sum, item) => {
+            return sum += +item.age
+          }, 0)
+        }
+      }
+    })
+  </script>
+</body>
+</html>

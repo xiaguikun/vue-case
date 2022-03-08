@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <op :msg="msg" :msg2="msg2"></op>
+  </div>
+
+  <script src="../Vue.js"></script>
+  <script>
+    const op = {
+      props: {
+        msg: Number
+      },
+      template: `
+        <div>
+          <p>{{ msg }}</p>
+        </div>
+      `
+    }
+
+    new Vue({
+      el: '#app',
+      data() {
+        return {
+          msg: 1,
+          msg2: 2
+        }
+      },
+      components: {
+        op
+      }
+    })
+  </script>
+</body>
+</html>

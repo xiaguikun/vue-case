@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <!-- <p>来自子组件的{{ msg }}</p> -->
+    <child @message="handleClick"></child>
+    <p>来自子组件的{{ msg }}</p>
+  </div>
+
+  <script src="../Vue.js"></script>
+  <script>
+    Vue.component('child', {
+      data() {
+        return {
+          msg: 'hahaha'
+        }
+      },
+      template: `
+        <div @click="up">{{ msg }}</div>
+      `,
+      methods: {
+        up() {
+          this.$emit('message', this.msg, 1)
+        }
+      },
+      mounted() {
+        this.$emit('message', this.msg, 1)
+      }
+    })
+
+    new Vue({
+      el: '#app',
+      data() {
+        return {
+          msg: ''
+        }
+      },
+      methods: {
+        handleClick(val1, val2) {
+          this.msg = val1
+        }
+      },
+    })
+  </script>
+</body>
+</html>

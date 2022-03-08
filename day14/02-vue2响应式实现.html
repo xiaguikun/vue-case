@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <p>{{ a }}</p>
+  <p>{{ b }}</p>
+  <p>ccc</p>
+</body>
+
+<script>
+const str = document.body.innerHTML
+
+document.body.innerHTML = str
+
+
+let obj = {
+  a: 2,
+  b: 'hello'
+}
+
+// 要将数据去替换上面的双大括号
+function compileElement(node) {
+  let children = node.children;
+  let reg = /\{\{(.*)\}\}/;
+  // 给所有的子节点去匹配是否有双大括号，如果有，就用obj里面的属性值去代替它
+  //RegExp.$1.trim()  是将正则匹配结果的第一项（字符串的第一个字符） .trim()是去掉前后空格
+  Array.from(children).forEach(child => {
+    if (reg.test(child.textContent)) {
+      child.innerHTML = obj[RegExp.$1.trim()]
+    }
+  })
+}
+
+compileElement(document.body)
+
+
+function observe(data) {
+  // 取出所有属性遍历 [a, b]
+  Object.keys(data).forEach(function(key) {
+    defineReactive(data, key, data[key]);
+  });
+};
+
+function defineReactive(data, key, val) {
+  Object.defineProperty(data, key, {
+    get: function() {
+      return val;
+    },
+    set: function(newVal) {
+      console.log('哈哈哈，监听到值变化了 ', val, ' --> ', newVal);
+      val = newVal;
+      document.body.innerHTML = str;
+      compileElement(document.body);
+    }
+  });
+}
+
+observe(obj)
+
+</script>
+</html>

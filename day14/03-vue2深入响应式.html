@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app" @click="change">
+    {{ arr }}
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    const vm = new Vue({
+      el: '#app',
+      data() {
+        return {
+          msg: 'hello',
+          obj: {
+            a: 1,
+            b: 2
+          },
+          arr: [1, 3, 5]
+        }
+      },
+      methods: {
+        change() {
+          // this.obj.c = 3
+          // this.$set(this.obj, 'c', 3)
+          // this.obj = Object.assign({}, this.obj, {c: 3})
+          // this.obj = {...this.obj, c: 3}
+
+          // this.arr[1] = 7
+          // this.$set(this.arr, 1, 7)
+          // this.arr.length = 2
+          // this.arr.splice(2)
+        }
+      },
+    })
+  </script>
+</body>
+</html>

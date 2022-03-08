@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .div1 {
+      width: 300px;
+      height: 300px;
+      background: #ccc;
+    }
+    .div2 {
+      width: 200px;
+      height: 200px;
+      background: greenyellow;
+    }
+    html, body, #app {
+      height: 100%;
+    }
+    #app {
+      overflow: auto;
+    }
+    .box {
+      height: 2000px;
+      width: 100px;
+      background: red;
+    }
+
+  </style>
+</head>
+<body>
+  <div id="app">
+    <!-- <div @click.self="event1" class="div1">
+      <div class="div2"></div>
+    </div> -->
+    <!-- <div class="box"></div> -->
+    <!-- <input type="text" @keyup.shift.13="keyup"> -->
+    <button v-on:click.ctrl.exact="onClick">A</button>
+  </div> 
+  
+  <script src="../Vue.js"></script>
+  <script>
+    const vm = new Vue({
+      el: '#app',
+      data() {
+        return {
+        }
+      },
+      methods: {
+        event1() {
+          console.log('父元素')
+        },
+        event2() {
+          console.log('子元素')
+        },
+        onScroll(e) {
+          console.log(e)
+        },
+        keyup(e) {
+          // console.log(e.keyCode)
+          alert(e.target.value)
+        },
+        onClick() {
+          console.log(1)
+        }
+      },
+    })
+  </script>
+</body>
+</html>

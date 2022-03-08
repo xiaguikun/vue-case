@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #app {
+      width: 100%;
+      height: 300px;
+      background: pink;
+    }
+    .detail {
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      background: #ccc;
+    }
+    .fade-enter, .fade-leave-to {
+      transform: translateX(100%);
+    }
+    .fade-enter-active, .fade-leave-to {
+      transition: all 0.5s;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    首页
+    <button @click="show = !show">
+      进入详情页
+    </button>
+    <transition-conponent>
+      <div class="detail" v-if="show">这是详情页</div>
+    </transition-conponent>
+    <!-- <transition name="fade">
+      <detail v-if="show"></detail>
+    </transition> -->
+  </div>
+
+  <script src="../Vue.js"></script>
+  <script>
+    const TransitionConponent = {
+      template: `
+      <transition name="fade">
+        <slot></slot>
+      </transition>
+      `
+    }
+
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        show: false
+      },
+      components: {
+        TransitionConponent
+      }
+    })
+  </script>
+</body>
+</html>

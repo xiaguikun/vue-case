@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <div v-for="(item, index) in list" :key="index" @click="handleClick(index)">{{ item }}</div>
+        <!-- <child1 v-if="currentIndex === 0"></child1>
+    <child2 v-if="currentIndex === 1"></child2>
+    <child3 v-if="currentIndex === 2"></child3> -->
+        <component :is="currentIndex"></component>
+    </div>
+
+    <script src="../Vue.js"></script>
+    <script>
+        const child1 = {
+            template: `
+        <div>我是第一个组件</div>
+      `
+        }
+
+        const child2 = {
+            template: `
+        <div>我是第2个组件</div>
+      `
+        }
+
+        const child3 = {
+            template: `
+        <div>我是第3个组件</div>
+      `
+        }
+
+        new Vue({
+            el: '#app',
+            data() {
+                return {
+                    list: ['按钮1', '按钮2', '按钮3'],
+                    currentIndex: 0
+                }
+            },
+            methods: {
+                handleClick(index) {
+                    this.currentIndex = 'child' + (index + 1)
+                }
+            },
+            components: {
+                child1,
+                child2,
+                child3
+            }
+        })
+    </script>
+</body>
+
+</html>

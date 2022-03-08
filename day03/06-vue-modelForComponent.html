@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <!-- <input type="text" @input="msg = $event.target.value" :value="msg">
+    {{ msg }} -->
+    <!-- <v-input :msg="msg" @input="msg = $event"></v-input> -->
+    <v-input v-model="msg"></v-input>
+    {{ msg }}
+  </div>
+
+  <script src="../Vue.js"></script>
+  <script>
+    const VInput = {
+      props: ['msg'],
+      template: `
+        <div>
+          <input type="text" :value="msg" @input="emit"/>
+        </div>
+      `,
+      methods: {
+        emit(e) {
+          this.$emit('input', e.target.value)
+        }
+      },
+    }
+
+
+    new Vue({
+      el: '#app',
+      data() {
+        return {
+          msg: 'qqqq'
+        }
+      },
+      components: {
+        VInput
+      },
+      // methods: {
+      //   handerInput(value) {
+      //     this.msg = value
+      //   }
+      // }
+    })
+  </script>
+</body>
+</html>

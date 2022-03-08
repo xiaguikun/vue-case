@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    {{ messageReverse }}
+    <button @click="change">change</button>
+  </div>
+
+  <script src="../Vue.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data() {
+        return {
+          message: 'hello Vue!',
+          messageReverse: '!euV olleh',
+          count: 1
+        }
+      },
+      // 侦听属性
+      // 不一定要return
+      // 当侦听的响应式数据改变的时候，才会触发
+      // 可以接受两个参数 newValue oldValue
+      watch: {
+        message(newValue, oldValue) {
+          console.log(newValue);
+          console.log(oldValue);
+          // console.log(1)
+          this.messageReverse = this.message.split('').reverse().join('');
+        },
+        count() {
+          // ...
+        }
+      },
+      methods: {
+        change() {
+          this.message = 'hihihi'
+        }
+      },
+    })
+  </script>
+</body>
+</html>

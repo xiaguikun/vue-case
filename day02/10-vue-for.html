@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <!-- <p v-for="(value, name, index) in obj" :key="index">
+      {{ value }} - {{ name }} - {{ index }}
+    </p> -->
+    <ul>
+      <!-- <li v-for="(item, index) in list" :key="item">
+        {{ item }}
+      </li> -->
+      <li v-for="(item, index) in list">
+        <p v-for="(i, inx) in item">
+          {{ i }}
+        </p>
+      </li>
+    </ul>
+
+    <span v-for="n in 10">
+      <p>hahaha</p>
+    </span>
+
+    <button @click="change">change</button>
+  </div> 
+  
+  <script src="../Vue.js"></script>
+  <script>
+    const vm = new Vue({
+      el: '#app',
+      data() {
+        return {
+          // obj: {
+          //   name: 'zhangsan',
+          //   age: 25,
+          //   sex: 1,
+          //   addr: 'jiubao'
+          // }
+          // list: [
+          //   '🍎',
+          //   '🍇',
+          //   '🌶',
+          //   '🍌',
+          //   '🥝'
+          // ]
+          list: [
+            ['🍎', '🍓', '🍅', '🦁'],
+            ['🥒', '🥝', '🍈', '🍑']
+          ]
+        }
+      },
+      methods: {
+        change() {
+          // this.list.push('🍉')
+          // this.list = this.list.concat(['🍉'])
+          // this.list = this.list.map(item => {
+          //   return item += 'aa'
+          // })
+          this.list.length = 3
+          this.list = [...this.list]
+        }
+      },
+    })
+  </script>
+</body>
+</html>

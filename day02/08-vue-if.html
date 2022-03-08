@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <!-- <template v-if="done === 1">
+      <p>how are you?</p>
+      <p>fine, thank. and you</p>
+    </template>
+    <template v-else-if="done === 2">
+      <p>how old are you?</p>
+      <p>I'm 18</p>
+    </template>
+    <div v-else>你好吗</div> -->
+    <!-- <p v-if="done === 2">how are you</p>
+    <p v-show="done === 2">how are you</p> -->
+    <p v-if="item > 3" v-for="(item, index) in list" >{{ item }}</p>
+  </div> 
+  
+  <script src="../Vue.js"></script>
+  <script>
+    const vm = new Vue({
+      el: '#app',
+      data() {
+        return {
+          // done: 1,
+          list: [1,2,3,4,5,6,7,8]
+        }
+      }
+    })
+  </script>
+</body>
+</html>

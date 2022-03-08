@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <!-- {{ messageReverse }}
+    {{ messageReverse2() }} -->
+    <!-- <p>{{ messageReverse }}</p>
+    <p>{{ messageReverse }}</p>
+    <p>{{ messageReverse }}</p> -->
+    <p>{{ messageReverse2() }}</p>
+    <p>{{ messageReverse2() }}</p>
+    <p>{{ messageReverse2() }}</p>
+  </div>
+
+  <script src="../Vue.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data() {
+        return {
+          message: 'hello Vue!'
+        }
+      },
+      mounted() {
+        setTimeout(() => {
+          this.message = 'hellow world'
+        }, 2000)
+        // console.log(this.messageReverse);
+        // this.messageReverse = 'jajajajaj'
+      },
+      computed: {
+        // 计算属性, 写法是函数
+        // 一定有一个return
+        // 一定会依赖其他的响应式数据，一旦它所依赖的响应式数据发生改变，会重新计算
+        // 计算属性是只读的
+        // 计算属性是有缓存的，只有当依赖数据改变的时候重新求值
+        messageReverse() {
+          console.log(0)
+          return this.message.split('').reverse().join('')
+        }
+      },
+      methods: {
+        messageReverse2() {
+          console.log(0)
+          return this.message.split('').reverse().join('')
+        }
+      }
+    })
+  </script>
+</body>
+</html>

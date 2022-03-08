@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <!-- <v-header>
+      <v-footer></v-footer>
+    </v-header> -->
+    <!-- <v-footer></v-footer> -->
+    <v-header v-bind:pp="msg"></v-header>
+  </div>
+
+
+  <script src="../Vue.js"></script>
+  <script>
+    
+
+    const VFooter = {
+      props: ['oo'],
+      template: `<div>尾部{{ oo }}</div>`
+    }
+
+    const VHeader = {
+      props: ['pp'],
+      template: `
+        <div>
+          头部{{ pp }}
+          <v-footer v-bind:oo="pp"></v-footer>
+        </div>
+      `,
+      components: {
+        VFooter
+      }
+    }
+
+
+    new Vue({
+      el: '#app',
+      components: {
+        VHeader
+      },
+      data() {
+        return {
+          msg: 'haha'
+        }
+      }
+    })
+  </script>
+</body>
+</html>

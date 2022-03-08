@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    {{ msg }}
+    <!-- <v-header></v-header>
+    <v-header></v-header>
+    <v-footer></v-footer> -->
+    <!-- <v-main></v-main> -->
+
+    <!-- <v-header></v-header>
+    <v-footer></v-footer> -->
+    <v-main></v-main>
+  </div>
+
+
+  <script src="../Vue.js"></script>
+  <script>
+    // 生成组件有两种方式
+    // 全局注册组件
+    // 第一个参数是组件的名字
+    // Vue.component('v-header', {
+    //   // vue实例能写什么，这里就能写什么，除了el
+    //   data() {
+    //     return {
+    //       title: '这是头部1'
+    //     }
+    //   },
+    //   // 模板
+    //   template: '<div>{{ title }}</div>'
+    // })
+
+
+    // Vue.component('v-footer', {
+    //   template: '<div>这是底部</div>'
+    // })
+
+    
+    // Vue.component('v-main', {
+    //   template: '<div><v-header></v-header><v-footer></v-footer></div>'
+    // })
+
+
+    // 局部申明组件
+
+    const VHeader = {
+      data() {
+        return {
+          title: '这是头部'
+        }
+      },
+      template: `<div>{{ title }}</div>`
+    }
+
+    const VFooter = {
+      template: `<div>这是底部</div>`
+    }
+
+    const VMain = {
+      template: `
+        <div>
+          <v-header></v-header>
+          <v-footer></v-footer>
+        </div>
+      `,
+      components: {
+        VHeader,
+        VFooter
+      }
+    }
+
+
+    new Vue({
+      el: '#app',
+      data: {
+        msg: 'hello'
+      },
+      // 如果option里面有template，outerHTML
+      // template: '<div>这是头部</div>'
+      // 注册组件
+      components: {
+        // VHeader: VHeader,
+        // VFooter
+        VMain
+      }
+    })
+  </script>
+</body>
+</html>

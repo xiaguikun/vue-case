@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    ul {
+      height: 70px;
+    }
+    li {
+      list-style: none;
+      float: left;
+      border: 1px solid #000;
+      width: 150px;
+      text-align: center;
+      line-height: 70px;
+      height: 60px;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <ul>
+      <li v-for="(item, index) in tabsList" v-on:click="handleClick(index)">{{ item }}</li>
+    </ul>
+    <div v-for="(item, index) in contentList" v-if="active === index">{{ item }}</div>
+  </div>
+
+  <script src="../Vue.js"></script>
+  <script>
+    const vm = new Vue({
+      data() {
+        return {
+          tabsList: ['1管理', '2管理', '3管理', '4管理'],
+          contentList: ['1内容', '2内容', '3内容', '4内容'],
+          active: 0
+        }
+      },
+      methods: {
+        handleClick(i) {
+          console.log(i)
+          this.active = i;
+        }
+      }
+    })
+
+    vm.$mount('#app');
+  </script>
+</body>
+</html>
